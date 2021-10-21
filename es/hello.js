@@ -1,18 +1,20 @@
+// wiki.js - Wiki route module
+
 const express = require('express');
-const app = express();
+const router = express.Router();
 
-exports.area = function(width) { return width * width; };
-exports.perimeter = function(width) { return 4 * width; };
+// Home page route
+router.get('/', function(req, res) {
+  res.send('Wiki home page');
+});
 
-const square = require('./square'); // Here we require() the name of the file without the (optional) .js file extension
-console.log('The area of a square with a width of 4 is ' + square.area(4));
+// About page route
+router.get('/about', function(req, res) {
+  res.send('About this wiki');
+});
 
-module.exports = {
-   area: function(width) {
-     return width * width;
-   },
- 
-   perimeter: function(width) {
-     return 4 * width;
-   }
- };
+module.exports = router;
+
+const wiki = require('./hello.js');
+// ...
+app.use('/wiki', wiki);

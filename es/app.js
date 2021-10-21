@@ -1,15 +1,23 @@
-const express = require('express');
-const app = express();
-exports.area = function(width) { return width * width; };
-exports.perimeter = function(width) { return 4 * width; };
-const square = require('./square'); // Here we require() the name of the file without the (optional) .js file extension
-console.log('The area of a square with a width of 4 is ' + square.area(4));
-module.exports = {
-    area: function(width) {
-      return width * width;
-    },
-  
-    perimeter: function(width) {
-      return 4 * width;
-    }
-  };
+
+app.get('/', function(req, res) {
+    res.send('Hello World!')
+  });
+
+
+
+
+
+
+
+  app.all('/secret', function(req, res, next) {
+    console.log('Accessing the secret section ...');
+    next(); // pass control to the next handler
+  });
+
+
+
+
+
+const wiki = require('./wiki.js');
+// ...
+app.use('/wiki', wiki);
